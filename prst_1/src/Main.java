@@ -1,14 +1,6 @@
+
+
 import java.util.Scanner;
-class zoo {
-     int nbrcage;
-     String nom;
-
-    public zoo(int nbrcage, String nom) {
-        this.nbrcage = nbrcage;
-        this.nom = nom;
-    }
-
-}
 
 public class Main {
     public static void main(String[] args) {

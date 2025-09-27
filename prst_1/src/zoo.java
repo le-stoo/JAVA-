@@ -1,4 +1,4 @@
-package src;
+
 public class zoo {
     public int nbrcage;
     public String nom;
