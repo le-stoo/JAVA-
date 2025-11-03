@@ -1,5 +1,9 @@
 
+package tn.esprit.gestionzoo.main;
+
 import java.util.Scanner;
+import tn.esprit.gestionzoo.entities.Animal;
+import tn.esprit.gestionzoo.entities.Zoo;
 
 public class Main {
     public static void main(String[] args) {
@@ -67,16 +71,16 @@ public class Main {
             zoo.displayZoo();
             
             // Test search functionality
-            System.out.println("\nSearching for " + animal1.name + ":");
-            Animal found = zoo.searchAnimal(animal1.name);
+            System.out.println("\nSearching for " + animal1.getName() + ":");
+            Animal found = zoo.searchAnimal(animal1.getName());
             if (found != null) {
                 System.out.println("Found: " + found);
             } else {
                 System.out.println("Animal not found!");
             }
             
-            System.out.println("\nSearching animals from family " + animal1.family + ":");
-            Animal[] familyMembers = zoo.searchAnimalByFamily(animal1.family);
+            System.out.println("\nSearching animals from family " + animal1.getFamily() + ":");
+            Animal[] familyMembers = zoo.searchAnimalByFamily(animal1.getFamily());
             if (familyMembers.length > 0) {
                 for (Animal a : familyMembers) {
                     System.out.println("- " + a);

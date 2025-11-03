@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
@@ -54,8 +52,11 @@ public class Zoo {
     }
     
     public boolean addAnimal(Animal animal) {
-        if (nbrAnimals >= MAX_ANIMALS) {
+        if (isZooFull()) {
             System.out.println("Error: Zoo is full! Maximum capacity is " + MAX_ANIMALS + " animals.");
+            return false;
+        }
+        if (animal == null) {
             return false;
         }
         
@@ -64,26 +65,10 @@ public class Zoo {
         return true;
     }
     
-    public String getName() {
-        return name;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public int getNbrCages() {
-        return nbrCages;
-    }
-
-    public int getNbrAnimals() {
-        return nbrAnimals;
-    }
-
     public Animal searchAnimal(String name) {
         if (name == null) return null;
         for (int i = 0; i < nbrAnimals; i++) {
-            if (animals[i] != null && name.equalsIgnoreCase(animals[i].name)) {
+            if (animals[i] != null && name.equalsIgnoreCase(animals[i].getName())) {
                 return animals[i];
             }
         }
@@ -94,7 +79,7 @@ public class Zoo {
         if (family == null) return new Animal[0];
         int count = 0;
         for (int i = 0; i < nbrAnimals; i++) {
-            if (animals[i] != null && family.equalsIgnoreCase(animals[i].family)) {
+            if (animals[i] != null && family.equalsIgnoreCase(animals[i].getFamily())) {
                 count++;
             }
         }
@@ -104,7 +89,7 @@ public class Zoo {
         Animal[] result = new Animal[count];
         int index = 0;
         for (int i = 0; i < nbrAnimals; i++) {
-            if (animals[i] != null && family.equalsIgnoreCase(animals[i].family)) {
+            if (animals[i] != null && family.equalsIgnoreCase(animals[i].getFamily())) {
                 result[index++] = animals[i];
             }
         }
