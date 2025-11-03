@@ -3,7 +3,9 @@ package tn.esprit.gestionzoo.entities;
 public class Zoo {
     private static final int MAX_ANIMALS = 25;
     private Animal[] animals;
+    private Aquatic[] aquaticAnimals;
     private int nbrAnimals;
+    private int nbrAquaticAnimals;
     private String name;
     private String city;
     private int nbrCages;
@@ -13,7 +15,9 @@ public class Zoo {
         this.city = city;
         this.nbrCages = nbrCages;
         this.animals = new Animal[MAX_ANIMALS];
+        this.aquaticAnimals = new Aquatic[10];  // Max 10 aquatic animals
         this.nbrAnimals = 0;
+        this.nbrAquaticAnimals = 0;
     }
 
     public String getName() {
@@ -49,6 +53,44 @@ public class Zoo {
 
     public boolean isZooFull() {
         return nbrAnimals >= MAX_ANIMALS;
+    }
+
+    public void addAquaticAnimal(Aquatic aquatic) {
+        if (nbrAquaticAnimals < 10) {
+            aquaticAnimals[nbrAquaticAnimals] = aquatic;
+            nbrAquaticAnimals++;
+        } else {
+            System.out.println("Cannot add more aquatic animals. Maximum capacity (10) reached.");
+        }
+    }
+
+    public float maxPenguinSwimmingDepth() {
+        float maxDepth = 0;
+        for (int i = 0; i < nbrAquaticAnimals; i++) {
+            if (aquaticAnimals[i] instanceof Penguin) {
+                Penguin penguin = (Penguin) aquaticAnimals[i];
+                if (penguin.getSwimmingDepth() > maxDepth) {
+                    maxDepth = penguin.getSwimmingDepth();
+                }
+            }
+        }
+        return maxDepth;
+    }
+
+    public void displayNumberOfAquaticsByType() {
+        int dolphins = 0;
+        int penguins = 0;
+        
+        for (int i = 0; i < nbrAquaticAnimals; i++) {
+            if (aquaticAnimals[i] instanceof Dolphin) {
+                dolphins++;
+            } else if (aquaticAnimals[i] instanceof Penguin) {
+                penguins++;
+            }
+        }
+        
+        System.out.println("Number of Dolphins: " + dolphins);
+        System.out.println("Number of Penguins: " + penguins);
     }
     
     public boolean addAnimal(Animal animal) {

@@ -1,5 +1,5 @@
 
-package tn.esprit.gestionzoo.main;
+
 
 import java.util.Scanner;
 import tn.esprit.gestionzoo.entities.*;
@@ -37,6 +37,27 @@ public class Main {
         System.out.println("\nTesting swim method:");
         fish.swim();
         flipper.swim();
+
+        // Testing aquatic animals management in Zoo
+        Zoo myZoo = new Zoo("Belvedere", "Tunis", 25);
+        
+        // Adding aquatic animals
+        myZoo.addAquaticAnimal(fish);
+        myZoo.addAquaticAnimal(flipper);
+        myZoo.addAquaticAnimal(pingu);
+        
+        // Testing max swimming depth for penguins
+        System.out.println("\nMaximum Penguin swimming depth: " + myZoo.maxPenguinSwimmingDepth() + " meters");
+        
+        // Display number of each type of aquatic animal
+        System.out.println("\nAquatic Animals Count:");
+        myZoo.displayNumberOfAquaticsByType();
+        
+        // Testing equals method
+        Aquatic fish2 = new Aquatic("Fish", "Nemo", 1, false, "Ocean");
+        System.out.println("\nTesting equals method:");
+        System.out.println("Are fish and fish2 equal? " + fish.equals(fish2));  // Should be true
+        System.out.println("Are fish and flipper equal? " + fish.equals(flipper));  // Should be false
 
         // Continue with zoo management
         Scanner sc = new Scanner(System.in);
