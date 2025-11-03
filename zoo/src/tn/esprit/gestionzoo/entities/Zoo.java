@@ -93,13 +93,15 @@ public class Zoo {
         System.out.println("Number of Penguins: " + penguins);
     }
     
-    public boolean addAnimal(Animal animal) {
+    public boolean addAnimal(Animal animal) throws ZooFullException, InvalidAgeException {
         if (isZooFull()) {
-            System.out.println("Error: Zoo is full! Maximum capacity is " + MAX_ANIMALS + " animals.");
-            return false;
+            throw new ZooFullException("Error: Zoo is full! Maximum capacity is " + MAX_ANIMALS + " animals.");
         }
         if (animal == null) {
             return false;
+        }
+        if (animal.getAge() < 0) {
+            throw new InvalidAgeException("Error: Animal age cannot be negative. Age provided: " + animal.getAge());
         }
         
         animals[nbrAnimals] = animal;

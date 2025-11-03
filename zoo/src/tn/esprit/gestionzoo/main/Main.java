@@ -14,10 +14,6 @@ public class Main {
     public static void main(String[] args) {
         // Testing new animal classes with default constructors
         System.out.println("Creating animals with default constructors:");
-        Terrestrial terrestrial = new Terrestrial();
-        Aquatic aquatic = new Aquatic();
-        Dolphin dolphin = new Dolphin();
-        Penguin penguin = new Penguin();
 
         // Testing parameterized constructors
         System.out.println("\nCreating animals with parameterized constructors:");
@@ -91,8 +87,16 @@ public class Main {
             sc.nextLine(); // consume newline after boolean
             
             Animal animal1 = new Animal(family, animalName, age, isMammal);
-            if (!zoo.addAnimal(animal1)) {
-                System.out.println("Failed to add " + animalName + " to the zoo.");
+            try {
+                if (!zoo.addAnimal(animal1)) {
+                    System.out.println("Failed to add " + animalName + " to the zoo.");
+                    return;
+                }
+            } catch (ZooFullException e) {
+                System.out.println(e.getMessage());
+                return;
+            } catch (InvalidAgeException e) {
+                System.out.println(e.getMessage());
                 return;
             }
             
@@ -113,8 +117,16 @@ public class Main {
             sc.nextLine(); // consume newline after boolean
             
             Animal animal2 = new Animal(family, animalName, age, isSecondMammal);
-            if (!zoo.addAnimal(animal2)) {
-                System.out.println("Failed to add " + animalName + " to the zoo.");
+            try {
+                if (!zoo.addAnimal(animal2)) {
+                    System.out.println("Failed to add " + animalName + " to the zoo.");
+                    return;
+                }
+            } catch (ZooFullException e) {
+                System.out.println(e.getMessage());
+                return;
+            } catch (InvalidAgeException e) {
+                System.out.println(e.getMessage());
                 return;
             }
             
