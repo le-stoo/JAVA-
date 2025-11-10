@@ -34,6 +34,17 @@ public class Main {
         fish.swim();
         flipper.swim();
 
+        // Testing eating behaviors
+        System.out.println("\nTesting eating behaviors:");
+        System.out.println("Aquatic animal eating:");
+        fish.eatMeat(Food.MEAT);
+        fish.eatMeat(Food.PLANT); // Should show error message
+
+        System.out.println("\nTerrestrial animal eating:");
+        lion.eatMeat(Food.MEAT);
+        lion.eatPlant(Food.PLANT);
+        lion.eatPlantAndMeat(Food.BOTH);
+
         // Testing aquatic animals management in Zoo
         Zoo myZoo = new Zoo("Belvedere", "Tunis", 25);
         
